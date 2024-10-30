@@ -5,7 +5,7 @@ export function TodoList(props) {
     const { todos } = props
     
 
-    const tab = 'Completed'
+    const tab = 'All'
     const filterTodosList = tab === 'All' ?
         todos : 
         tab === 'Completed' ?
