@@ -32,6 +32,7 @@ function App() {
     completedTodo['complete'] = true
     newTodoList[index] = completedTodo
     setTodos(newTodoList)
+    handleSaveData(newTodoList)
   }
 
   function handleDeleteTodo(index) {
@@ -39,7 +40,20 @@ function App() {
       return valIndex !== index
     })
     setTodos(newTodoList)
+    handleSaveData(newTodoList)
   }
+
+  function handleSaveData(currentTodos) {
+    localStorage.setItem('todo-app', JSON.stringify({ todos: currentTodos }))
+  }
+ // useEffect is just saying that whenever the application is up and running, run the following code
+  // The code below is needed to access local storage and save data in your react website
+  useEffect(() => {
+    if (!localStorage || !localStorage.getItem('todo-app')) { return }
+    console.log('here')
+    let db = JSON.parse(localStorage.getItem('todo-app'))
+    setTodos(db.todos)
+  }, [])
 
   return (
     <>
